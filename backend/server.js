@@ -27,6 +27,12 @@ router.post("/register", async (req, res) => {
 			passwordHash,
 			name,
 		});
+		await Wallet.create({
+			userId: user._id,
+			balance: { PLN: 0, USD: 0, EUR: 0 },
+		});
+
+		return res.json({ message: "User registered successfully" });
 	} catch (err) {
 		res.status(500).json({ error: err.message });
 	}
