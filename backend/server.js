@@ -38,6 +38,21 @@ router.post("/register", async (req, res) => {
 	}
 });
 
+router.post("/login", async (req, res) => {
+	try {
+		const { email, password } = req.body;
+
+		const user = await User.findOne({ email });
+		if (!user) return res.status(400).json({ message: "Invalid credentials" });
+
+		const isMatch = await bcrypt.compare(password, user.passwordHash);
+		if (!isMatch)
+			return res.status(400).json({ message: "Invalid credentials" });
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+});
+
 mongoose
 	.connect(process.env.MONGO_URL)
 	.then(() => console.log("MongoDB Atlas connected"))
