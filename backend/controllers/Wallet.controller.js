@@ -32,10 +32,10 @@ exports.getDeposit = async (req, res) => {
     await Transaction.create({
       userId: req.user.userId,
       type: 'deposit',
-      fromCurrency: 'currency',
-      toCurrency: 'currency',
-      amountFrom: 'amount',
-      amountTo: 'amount',
+      fromCurrency: currency,
+      toCurrency: currency,
+      amountFrom: Number(amount),
+      amountTo: Number(amount),
       rateUsed: 1,
     });
 
