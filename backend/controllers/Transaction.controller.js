@@ -4,9 +4,9 @@ const { fetchNBP } = require('../utils/nbp');
 
 exports.createTransaction = async (req, res) => {
   try {
-    const { type, formCurrency, toCurrency, amountFrom } = req.body;
+    const { type, fromCurrency, toCurrency, amountFrom } = req.body;
 
-    if (!type || !formCurrency || !toCurrency || !amountFrom) {
+    if (!type || !fromCurrency || !toCurrency || !amountFrom) {
       return res.status(400).json({ message: 'Invalid request data' });
     }
 
@@ -20,19 +20,32 @@ exports.createTransaction = async (req, res) => {
 
     const amountTo = Number(amountFrom) / rateUsed;
 
-    if (type === 'sell' && wallet.balance[formCurrency] < amountFrom) {
+    if (type === 'sell' && wallet.balance[fromCurrency] < amountFrom) {
       return res.status(400).json({ message: 'Insufficient balance' });
     }
 
     if (type === 'buy') {
-      wallet.balance[formCurrency] -= Number(amountFrom);
+      wallet.balance[fromCurrency] -= Number(amountFrom);
       wallet.balance[toCurrency] = (wallet.balance[toCurrency] || 0) + amountTo;
     } else if (type === 'sell') {
-      wallet.balance[formCurrency] -= Number(amountFrom);
+      wallet.balance[fromCurrency] -= Number(amountFrom);
       wallet.balance[toCurrency] = (wallet.balance[toCurrency] || 0) + amountTo;
     }
 
     await wallet.save();
+
+    const transaction = await Transaction.create({
+      userId: req.user.userId,
+      type,
+      fromCurrency,
+      toCurrency,
+      amountFrom: Number(amountFrom),
+      amountTo,
+      rateUsed,
+    });
+
+    res.json({ message: 'Transaction successful', transaction, wallet });
+    
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
