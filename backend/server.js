@@ -4,12 +4,14 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const userRoutes = require('./routes/User.routes');
+const walletRoutes = require('./routes/Wallet.routes');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', userRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/wallet', walletRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL)
