@@ -13,7 +13,12 @@ exports.createTransaction = async (req, res) => {
     const wallet = await Wallet.findOne({ userId: req.body.userId });
     if (!wallet) return req.status(404).json({ message: 'Wallet not found' });
 
-    
+    const rateData = await fetchNBP('A', toCurrency);
+    const rateUsed = rateData.mid;
+    if (!rateUsed)
+      return res.status(400).json({ message: 'Exchange rate not available' });
+
+    const amountTo = Number(amountFrom) / rateUsed;
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
