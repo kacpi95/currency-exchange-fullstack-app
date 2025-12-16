@@ -60,4 +60,53 @@ export default function WalletScreen() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#e8f7f2',
+  },
+
+  title: {
+    marginBottom: 24,
+    textAlign: 'center',
+    fontSize: 26,
+    fontWeight: '700',
+    color: '#05668d',
+  },
+
+  cardContainer: {
+    width: '100%',
+    gap: 15,
+    alignItems: 'center',
+  },
+
+  card: {
+    width: '100%',
+    maxWidth: 300,
+    paddingVertical: 20,
+    borderWidth: 1,
+    paddingHorizontal: 15,
+    borderRadius: 12,
+    alignItems: 'center',
+    borderColor: '#a3d2ca',
+    backgroundColor: '#ffffff',
+  },
+
+  cardTitle: {
+    marginBottom: 6,
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#028090',
+  },
+
+  cardBalance: {
+    fontSize: 22,
+    fontWeight: '700',
+    textAlign: 'center',
+    color: '#05668d',
+  },
+});
