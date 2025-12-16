@@ -27,7 +27,6 @@ export default function LoginScreen({ navigation }) {
       setLoading(true);
       const res = await API.post('/login', { email, password });
       login(res.data.user, res.data.token);
-      navigation.replace('Home');
     } catch (err) {
       console.log(err.response?.data || err.message);
       Alert.alert(

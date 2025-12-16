@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
-import { ActivityIndicator, StyleSheete } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
@@ -28,10 +28,19 @@ export default function HomeScreen() {
 
     fetchWallet();
   }, []);
-  if (loading) {
+  if (loading || !wallet) {
     return <ActivityIndicator size='large' />;
   }
-  return;
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Your wallet</Text>
+      <View style={styles.cardContainer}>
+        <Text style={styles.card}>PLN: {wallet.balance.PLN}</Text>
+        <Text style={styles.card}>USD: {wallet.balance.USD}</Text>
+        <Text style={styles.card}>EUR: {wallet.balance.EUR}</Text>
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({});
