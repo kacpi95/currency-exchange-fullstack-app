@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import WalletApi from '../api/wallet';
 import {
@@ -9,31 +9,39 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function WalletScreen({ navigation }) {
   const { token } = useContext(AuthContext);
   const [wallet, setWallet] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchWallet = async () => {
-      try {
-        const res = await WalletApi.get('/', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setWallet(res.data);
-      } catch (err) {
-        console.log(err);
-        console.log('Wallet error:', err.response?.data || err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchWallet = async () => {
+    try {
+      const res = await WalletApi.get('/', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setWallet(res.data);
+    } catch (err) {
+      console.log(err);
+      console.log('Wallet error:', err.response?.data || err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useFocusEffect(
+    useCallback(() => {
+      fetchWallet();
+    }, [])
+  );
+
+  useEffect(() => {
     fetchWallet();
   }, []);
+
   if (loading || !wallet) {
     return (
       <SafeAreaView style={styles.container}>
@@ -77,7 +85,7 @@ export default function WalletScreen({ navigation }) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Deposit', { fetchWallet })}
+        onPress={() => navigation.navigate('Deposit')}
       >
         <Text style={styles.buttonText}>Deposit PLN</Text>
       </TouchableOpacity>

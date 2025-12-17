@@ -31,11 +31,12 @@ export default function TransactionFormScreen({ route }) {
     try {
       const res = await TransactionApi.post(
         '/',
-        { type, fromCurrency, toCurrency, amountFrom },
+        { type, fromCurrency, toCurrency, amountFrom: Number(amountFrom) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       Alert.alert(`Success, Transaction completed`);
       fetchWallet();
+      setAmountFrom('');
     } catch (err) {
       Alert.alert('Error', err.response?.data?.message || err.message);
     } finally {

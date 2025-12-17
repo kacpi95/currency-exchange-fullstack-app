@@ -4,12 +4,10 @@ import WalletApi from '../api/wallet';
 import { StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function DepositScreen({ navigation, route }) {
+export default function DepositScreen({ navigation }) {
   const { token } = useContext(AuthContext);
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const { fetchWallet } = route?.params ?? {};
 
   const handleDeposit = async () => {
     if (!amount) return;
@@ -21,7 +19,7 @@ export default function DepositScreen({ navigation, route }) {
         { amount, currency: 'PLN' },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      fetchWallet?.();
+      setAmount('');
       navigation.goBack();
     } catch (err) {
       console.log('Error', err.response?.data?.message || err.message);

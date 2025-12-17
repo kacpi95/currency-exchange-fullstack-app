@@ -10,7 +10,7 @@ exports.createTransaction = async (req, res) => {
       return res.status(400).json({ message: 'Invalid request data' });
     }
 
-    const wallet = await Wallet.findOne({ userId: req.body.userId });
+    const wallet = await Wallet.findOne({ userId: req.user.userId });
     if (!wallet) return req.status(404).json({ message: 'Wallet not found' });
 
     const rateData = await fetchNBP('A', toCurrency);
@@ -18,18 +18,22 @@ exports.createTransaction = async (req, res) => {
     if (!rateUsed)
       return res.status(400).json({ message: 'Exchange rate not available' });
 
-    const amountTo = Number(amountFrom) / rateUsed;
-
-    if (type === 'sell' && wallet.balance[fromCurrency] < amountFrom) {
-      return res.status(400).json({ message: 'Insufficient balance' });
-    }
+    const amountTo = (Number(amountFrom) / rateUsed).toFixed(2);
 
     if (type === 'buy') {
+      if (wallet.balance[fromCurrency] < amountFrom)
+        return res.status(400).json({ message: 'Insufficient balance' });
+
       wallet.balance[fromCurrency] -= Number(amountFrom);
       wallet.balance[toCurrency] = (wallet.balance[toCurrency] || 0) + amountTo;
     } else if (type === 'sell') {
+      if (wallet.balance[fromCurrency] < amountFrom)
+        return res.status(400).json({ message: 'Insufficient balance' });
+
       wallet.balance[fromCurrency] -= Number(amountFrom);
-      wallet.balance[toCurrency] = (wallet.balance[toCurrency] || 0) + amountTo;
+      wallet.balance[toCurrency] = +(
+        wallet.balance[toCurrency] || 0 + amountTo
+      ).toFixed(2);
     }
 
     await wallet.save();
