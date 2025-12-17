@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import TransactionApi from '../api/transaction';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CurrencySelector from '../components/CurrencySelector';
 
 export default function TransactionFormScreen({ route }) {
   const { token } = useContext(AuthContext);
@@ -63,20 +64,15 @@ export default function TransactionFormScreen({ route }) {
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.subtitle}>From currency</Text>
-      <TextInput
-        style={styles.input}
+      <CurrencySelector
+        label='From Currency'
         value={fromCurrency}
-        onChangeText={setFromCurrency}
-        autoCapitalize='characters'
+        onSelect={setFromCurrency}
       />
-
-      <Text style={styles.subtitle}>To currency</Text>
-      <TextInput
-        style={styles.input}
+      <CurrencySelector
+        label='To Currency'
         value={toCurrency}
-        onChangeText={setToCurrency}
-        autoCapitalize='characters'
+        onSelect={setToCurrency}
       />
 
       <Text style={styles.subtitle}>Amount</Text>
