@@ -53,14 +53,22 @@ export default function TransactionFormScreen({ route }) {
           style={[styles.typeButton, type === 'buy' && styles.buyActive]}
           onPress={() => setType('buy')}
         >
-          <Text style={styles.typeText}>BUY</Text>
+          <Text
+            style={[styles.typeText, type === 'buy' && styles.typeTextActive]}
+          >
+            BUY
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.typeButton, type === 'sell' && styles.sellActive]}
           onPress={() => setType('sell')}
         >
-          <Text style={styles.typeText}>SELL</Text>
+          <Text
+            style={[styles.typeText, type === 'sell' && styles.typeTextActive]}
+          >
+            SELL
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -96,4 +104,93 @@ export default function TransactionFormScreen({ route }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#e8f7f2',
+  },
+
+  title: {
+    marginBottom: 20,
+    fontSize: 26,
+    fontWeight: '700',
+    textAlign: 'center',
+    color: '#05668d',
+  },
+
+  subtitle: {
+    marginBottom: 6,
+    marginTop: 12,
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+    color: '#028090',
+  },
+
+  typeRow: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    gap: 12,
+  },
+
+  typeButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#a3d2ca',
+    backgroundColor: '#fff',
+  },
+
+  buyActive: {
+    backgroundColor: '#028090',
+  },
+
+  sellActive: {
+    backgroundColor: '#c1121f',
+  },
+
+  typeText: {
+    fontWeight: '700',
+    textAlign: 'center',
+    color: '#05668d',
+  },
+
+  typeTextActive: {
+    color: '#fff',
+  },
+
+  input: {
+    width: '100%',
+    maxWidth: 300,
+    padding: 12,
+    borderWidth: 1,
+    borderRadius: 8,
+    textAlign: 'center',
+    backgroundColor: '#fff',
+    borderColor: '#a3d2ca',
+  },
+
+  submitButton: {
+    width: '100%',
+    marginTop: 20,
+    paddingVertical: 14,
+    maxWidth: 300,
+    borderRadius: 8,
+    alignItems: 'center',
+    backgroundColor: '#028090',
+  },
+
+  submitText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#fff',
+  },
+
+  disabled: {
+    opacity: 0.6,
+  },
+});
