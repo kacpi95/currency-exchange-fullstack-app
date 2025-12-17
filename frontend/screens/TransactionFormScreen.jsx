@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  View,
 } from 'react-native';
 import TransactionApi from '../api/transaction';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -44,35 +45,41 @@ export default function TransactionFormScreen({ route }) {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Make Transaction</Text>
 
-      <Text style={styles.subtitle}>Type:</Text>
-      <TouchableOpacity
-        style={styles.button}
-        title='Buy'
-        onPress={() => setType('buy')}
-        color={type === 'buy' ? 'green' : 'grey'}
-      />
-      <TouchableOpacity
-        style={styles.button}
-        title='Sell'
-        onPress={() => setType('sell')}
-        color={type === 'sell' ? 'red' : 'grey'}
-      />
+      <Text style={styles.subtitle}>Type</Text>
 
-      <Text style={styles.subtitle}>From Currency:</Text>
+      <View style={styles.typeRow}>
+        <TouchableOpacity
+          style={[styles.typeButton, type === 'buy' && styles.buyActive]}
+          onPress={() => setType('buy')}
+        >
+          <Text style={styles.typeText}>BUY</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.typeButton, type === 'sell' && styles.sellActive]}
+          onPress={() => setType('sell')}
+        >
+          <Text style={styles.typeText}>SELL</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Text style={styles.subtitle}>From currency</Text>
       <TextInput
         style={styles.input}
         value={fromCurrency}
         onChangeText={setFromCurrency}
+        autoCapitalize='characters'
       />
 
-      <Text style={styles.subtitle}>To Currency:</Text>
+      <Text style={styles.subtitle}>To currency</Text>
       <TextInput
         style={styles.input}
         value={toCurrency}
         onChangeText={setToCurrency}
+        autoCapitalize='characters'
       />
 
-      <Text style={styles.subtitle}>Amount:</Text>
+      <Text style={styles.subtitle}>Amount</Text>
       <TextInput
         style={styles.input}
         value={amountFrom}
@@ -81,10 +88,14 @@ export default function TransactionFormScreen({ route }) {
       />
 
       <TouchableOpacity
-        title={loading ? 'Processing...' : 'Submit'}
+        style={[styles.submitButton, loading && styles.disabled]}
         onPress={handleTransaction}
         disabled={loading}
-      />
+      >
+        <Text style={styles.submitText}>
+          {loading ? 'Processing...' : 'Submit'}
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
