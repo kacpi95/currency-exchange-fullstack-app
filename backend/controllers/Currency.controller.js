@@ -1,4 +1,4 @@
-import { fetchNBP } from '../utils/nbp';
+const { fetchNBP } = require('../utils/nbp');
 
 exports.getCurrentCurrency = async (req, res) => {
   const currencies = ['USD', 'PLN', 'EUR', 'CHF'];
