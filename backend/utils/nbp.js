@@ -10,7 +10,7 @@ async function fetchNBP(table = 'A', code = 'EUR') {
   }
 
   const res = await fetch(
-    `https://api.nbp.pl/api/exchangerates/rates/${table}/${code}/? format=json`
+    `https://api.nbp.pl/api/exchangerates/rates/${table}/${code}/?format=json`
   );
 
   if (!res.ok) {
@@ -23,10 +23,10 @@ async function fetchNBP(table = 'A', code = 'EUR') {
   const data = {
     code: code.toUpperCase(),
     table,
-    effectiveData: rate.effectiveData,
+    effectiveDate: rate.effectiveDate,
     mid: rate.mid ?? null,
     bid: rate.bid ?? null,
-    ask: rate.bid ?? null,
+    ask: rate.ask ?? null,
   };
 
   cache.set(key, { data, ts: Date.now() });

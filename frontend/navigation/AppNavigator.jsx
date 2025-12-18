@@ -4,6 +4,7 @@ import WalletScreen from '../screens/WalletScreen';
 import TransactionScreen from '../screens/TransactionScreen';
 import TransactionFormScreen from '../screens/TransactionFormScreen';
 import DepositScreen from '../screens/DepositScreen';
+import CurrentRatesScreen from '../screens/CurrentRatesScreen';
 
 export default function AppNavigator() {
   const Tab = createBottomTabNavigator();
@@ -15,6 +16,7 @@ export default function AppNavigator() {
       <Tab.Screen name='History' component={TransactionScreen} />
       <Tab.Screen name='Transaction' component={TransactionFormScreen} />
       <Tab.Screen name='Deposit' component={DepositScreen} />
+      <Tab.Screen name='Current' component={CurrentRatesScreen} />
     </Tab.Navigator>
   );
 }

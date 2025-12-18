@@ -1,7 +1,7 @@
 const { fetchNBP } = require('../utils/nbp');
 
 exports.getCurrentCurrency = async (req, res) => {
-  const currencies = ['USD', 'PLN', 'EUR', 'CHF'];
+  const currencies = ['USD', 'EUR', 'CHF'];
   const result = [];
 
   for (const cur of currencies) {
@@ -20,7 +20,7 @@ exports.getOldCurrency = async (req, res) => {
     const { data } = await axios.get(url, {
       headers: { Accept: 'application/json' },
     });
-    res.json(data.res);
+    res.json(data.rates);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
