@@ -1,3 +1,4 @@
+const axios = require('axios');
 const { fetchNBP } = require('../utils/nbp');
 
 exports.getCurrentCurrency = async (req, res) => {
@@ -13,10 +14,10 @@ exports.getCurrentCurrency = async (req, res) => {
 };
 
 exports.getOldCurrency = async (req, res) => {
-  const { code, start, end } = req.params;
+  const { currency, start, end } = req.params;
 
   try {
-    const url = `http://api.nbp.pl/api/exchangerates/rates/A/${code}/${start}/${end}/`;
+    const url = `http://api.nbp.pl/api/exchangerates/rates/A/${currency}/${start}/${end}/`;
     const { data } = await axios.get(url, {
       headers: { Accept: 'application/json' },
     });

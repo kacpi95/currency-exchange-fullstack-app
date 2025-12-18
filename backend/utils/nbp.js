@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const cache = new Map();
 const CACHE_TTL = 1000 * 60 * 60;
 
@@ -9,7 +11,7 @@ async function fetchNBP(table = 'A', code = 'EUR') {
     return cached.data;
   }
 
-  const res = await fetch(
+  const res = await axios.get(
     `https://api.nbp.pl/api/exchangerates/rates/${table}/${code}/?format=json`
   );
 
