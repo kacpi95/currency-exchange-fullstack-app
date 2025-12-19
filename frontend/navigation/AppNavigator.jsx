@@ -8,6 +8,7 @@ import TransactionFormScreen from '../screens/TransactionFormScreen';
 import DepositScreen from '../screens/DepositScreen';
 import CurrentRatesScreen from '../screens/CurrentRatesScreen';
 import HistoricalRateScreen from '../screens/HistoricalRatesScreen';
+import WalletStackNavigator from './WalletStackNavigator';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -19,16 +20,6 @@ function HomeStack() {
         name='HomeMain'
         component={HomeScreen}
         options={{ title: 'Home' }}
-      />
-      <Stack.Screen
-        name='TransactionForm'
-        component={TransactionFormScreen}
-        options={{ title: 'New Transaction' }}
-      />
-      <Stack.Screen
-        name='Deposit'
-        component={DepositScreen}
-        options={{ title: 'Deposit PLN' }}
       />
       <Stack.Screen
         name='CurrentRates'
@@ -52,7 +43,11 @@ export default function AppNavigator() {
         component={HomeStack}
         options={{ headerShown: false, title: 'Home' }}
       />
-      <Tab.Screen name='Wallet' component={WalletScreen} />
+      <Tab.Screen
+        name='Wallet'
+        component={WalletStackNavigator}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name='History' component={TransactionScreen} />
     </Tab.Navigator>
   );

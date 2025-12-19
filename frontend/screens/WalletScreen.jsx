@@ -67,14 +67,14 @@ export default function WalletScreen({ navigation }) {
       </View>
       <TouchableOpacity
         style={CommonStyles.button}
-        onPress={() => navigation.navigate('Transaction')}
+        onPress={() => navigation.navigate('MakeTransaction')}
       >
         <Text style={CommonStyles.buttonText}>Make Transaction</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={CommonStyles.button}
-        onPress={() => navigation.navigate('History')}
+        onPress={() => navigation.navigate('TransactionHistory')}
       >
         <Text style={CommonStyles.buttonText}>Transaction History</Text>
       </TouchableOpacity>
