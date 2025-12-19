@@ -42,6 +42,16 @@ export default function HomeScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          style={CommonStyles.card}
+          onPress={() => navigation.navigate('ExchangeRate')}
+        >
+          <Text style={CommonStyles.cardTitle}>Exchange Rate</Text>
+          <Text style={[CommonStyles.cardTitle, styles.customCardTitle]}>
+            Check exchange rates
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           style={[CommonStyles.card, styles.logoutCard]}
           onPress={handleLogout}
         >
