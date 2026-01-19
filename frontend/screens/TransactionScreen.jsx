@@ -62,8 +62,8 @@ export default function TransactionScreen() {
           item.type === 'buy'
             ? styles.buy
             : item.type === 'sell'
-            ? styles.sell
-            : styles.deposit,
+              ? styles.sell
+              : styles.deposit,
         ]}
       >
         {item.type.toUpperCase()}
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     fontSize: Spacing.lg,
     fontWeight: '500',
     textAlign: 'center',
+    color: Colors.textSecondary,
   },
 
   rate: {

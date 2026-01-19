@@ -27,7 +27,7 @@ export default StyleSheet.create({
     borderRadius: Spacing.sm,
     fontSize: Spacing.lg,
     borderColor: Colors.borderDefault,
-    backgroundColor: Colors.backgroundWhite,
+    backgroundColor: Colors.textPrimary,
   },
 
   button: {

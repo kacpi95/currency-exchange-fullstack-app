@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Alert,
   StyleSheet,
+  ImageBackground,
 } from 'react-native';
 import CommonStyles from '../styles/common';
 
@@ -32,7 +33,7 @@ export default function LoginScreen({ navigation }) {
       console.log(err.response?.data || err.message);
       Alert.alert(
         'Login error',
-        err.response?.data?.message || 'Something went wrong!'
+        err.response?.data?.message || 'Something went wrong!',
       );
     } finally {
       setLoading(false);
