@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { useContext } from 'react';
-import { AuthContext, AuthProvider } from './context/AuthContext';
-import AppNavigator from './navigation/AppNavigator';
-import AuthNavigator from './navigation/AuthNavigator';
+import { AuthContext, AuthProvider } from './src/context/AuthContext';
+import AppNavigator from './src/navigation/AppNavigator';
+import AuthNavigator from './src/navigation/AuthNavigator';
 
 const RootNavigator = () => {
   const { token } = useContext(AuthContext);

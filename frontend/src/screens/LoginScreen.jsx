@@ -43,7 +43,7 @@ export default function LoginScreen({ navigation }) {
   return (
     <SafeAreaView style={CommonStyles.container}>
       <ImageBackground
-        source={require('../bgc-1.jpg')}
+        source={require('../images/bgc-1.jpg')}
         style={StyleSheet.absoluteFill}
       />
 

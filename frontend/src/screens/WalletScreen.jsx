@@ -36,7 +36,7 @@ export default function WalletScreen({ navigation }) {
   useFocusEffect(
     useCallback(() => {
       fetchWallet();
-    }, [])
+    }, []),
   );
 
   useEffect(() => {

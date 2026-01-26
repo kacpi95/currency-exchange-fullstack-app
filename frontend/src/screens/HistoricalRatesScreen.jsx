@@ -24,7 +24,7 @@ export default function HistoricalRateScreen() {
   const fetchRates = async () => {
     try {
       const res = await CurrentRatesApi.get(
-        `/history/${currency}/${start}/${end}`
+        `/history/${currency}/${start}/${end}`,
       );
       setRates(res.data);
     } catch (err) {

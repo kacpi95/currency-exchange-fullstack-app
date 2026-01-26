@@ -18,7 +18,7 @@ export default function DepositScreen({ navigation }) {
       const res = await WalletApi.post(
         '/deposit',
         { amount, currency: 'PLN' },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       setAmount('');
       navigation.goBack();

@@ -35,7 +35,7 @@ export default function TransactionFormScreen({ route }) {
       const res = await TransactionApi.post(
         '/',
         { type, fromCurrency, toCurrency, amountFrom: Number(amountFrom) },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       Alert.alert(`Success, Transaction completed`);
       fetchWallet();
