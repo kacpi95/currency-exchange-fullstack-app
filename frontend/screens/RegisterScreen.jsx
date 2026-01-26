@@ -15,6 +15,10 @@ export default function RegisterScreen({ navigation }) {
       Alert.alert('Complete all fields');
       return;
     }
+    if (password.length < 6) {
+      Alert.alert('Error', 'The password must have at least 6 characters');
+      return;
+    }
 
     try {
       setLoading(true);
@@ -25,7 +29,7 @@ export default function RegisterScreen({ navigation }) {
       console.log(err.response?.data || err.message);
       Alert.alert(
         'Registration error',
-        err.response?.data?.message || 'Something went wrong!'
+        err.response?.data?.message || 'Something went wrong!',
       );
     } finally {
       setLoading(false);

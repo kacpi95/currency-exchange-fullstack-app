@@ -1,7 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import TransactionApi from '../api/transaction';
 import { AuthContext } from '../context/AuthContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
+
 import {
   Text,
   StyleSheet,
@@ -15,30 +17,32 @@ import Spacing from '../styles/spacing';
 
 export default function TransactionScreen() {
   const [loading, setLoading] = useState(true);
-  const [transactions, setTransactions] = useState(null);
+  const [transactions, setTransactions] = useState([]);
 
   const { token } = useContext(AuthContext);
 
-  useEffect(() => {
-    const fetchTransaction = async () => {
-      setLoading(true);
-      try {
-        const res = await TransactionApi.get('/history', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setTransactions(res.data);
-      } catch (err) {
-        console.log(err);
-        console.log('Transaction error:', err.response?.data || err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchTransaction = async () => {
+    setLoading(true);
+    try {
+      const res = await TransactionApi.get('/history', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setTransactions(res.data);
+    } catch (err) {
+      console.log(err);
+      console.log('Transaction error:', err.response?.data || err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchTransaction();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchTransaction();
+    }, [token]),
+  );
 
   if (loading)
     return (
