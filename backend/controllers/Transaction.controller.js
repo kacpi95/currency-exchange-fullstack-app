@@ -2,6 +2,16 @@ const Transaction = require('../models/Transaction.model');
 const Wallet = require('../models/Wallet.model');
 const { fetchNBP } = require('../utils/nbp');
 
+const round2 = (value) =>
+  Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+
+const getMidRatePLNPerUnit = async (currency) => {
+  if (!currency) return null;
+  if (currency === 'PLN') return 1;
+  const rateData = await fetchNBP('A', currency);
+  return rateData?.mid ?? null;
+};
+
 exports.createTransaction = async (req, res) => {
   try {
     const { type, fromCurrency, toCurrency, amountFrom } = req.body;
@@ -11,30 +21,40 @@ exports.createTransaction = async (req, res) => {
     }
 
     const wallet = await Wallet.findOne({ userId: req.user.userId });
-    if (!wallet) return req.status(404).json({ message: 'Wallet not found' });
+    if (!wallet) return res.status(404).json({ message: 'Wallet not found' });
 
-    const rateData = await fetchNBP('A', toCurrency);
-    const rateUsed = rateData.mid;
-    if (!rateUsed)
-      return res.status(400).json({ message: 'Exchange rate not available' });
-
-    const amountTo = (Number(amountFrom) / rateUsed).toFixed(2);
-
-    if (type === 'buy') {
-      if (wallet.balance[fromCurrency] < amountFrom)
-        return res.status(400).json({ message: 'Insufficient balance' });
-
-      wallet.balance[fromCurrency] -= Number(amountFrom);
-      wallet.balance[toCurrency] = (wallet.balance[toCurrency] || 0) + amountTo;
-    } else if (type === 'sell') {
-      if (wallet.balance[fromCurrency] < amountFrom)
-        return res.status(400).json({ message: 'Insufficient balance' });
-
-      wallet.balance[fromCurrency] -= Number(amountFrom);
-      wallet.balance[toCurrency] = +(
-        wallet.balance[toCurrency] || 0 + amountTo
-      ).toFixed(2);
+    const parsedAmountFrom = Number(amountFrom);
+    if (!Number.isFinite(parsedAmountFrom) || parsedAmountFrom <= 0) {
+      return res
+        .status(400)
+        .json({ message: 'amountFrom must be a positive number' });
     }
+
+    const fromMid = await getMidRatePLNPerUnit(fromCurrency);
+    const toMid = await getMidRatePLNPerUnit(toCurrency);
+    if (!fromMid || !toMid) {
+      return res.status(400).json({ message: 'Exchange rate not available' });
+    }
+
+    const amountPln = parsedAmountFrom * fromMid;
+    const amountTo = round2(amountPln / toMid);
+    const rateUsed = round2(fromMid / toMid);
+
+    if (type !== 'buy' && type !== 'sell') {
+      return res.status(400).json({ message: 'Invalid transaction type' });
+    }
+
+    const currentFromBalance = Number(wallet.balance[fromCurrency] || 0);
+    const currentToBalance = Number(wallet.balance[toCurrency] || 0);
+
+    if (currentFromBalance < parsedAmountFrom) {
+      return res.status(400).json({ message: 'Insufficient balance' });
+    }
+
+    wallet.balance[fromCurrency] = round2(
+      currentFromBalance - parsedAmountFrom,
+    );
+    wallet.balance[toCurrency] = round2(currentToBalance + amountTo);
 
     await wallet.save();
 
@@ -43,7 +63,7 @@ exports.createTransaction = async (req, res) => {
       type,
       fromCurrency,
       toCurrency,
-      amountFrom: Number(amountFrom),
+      amountFrom: parsedAmountFrom,
       amountTo,
       rateUsed,
     });
@@ -65,7 +85,7 @@ exports.getHistory = async (req, res) => {
 
 exports.getTransactionById = async (req, res) => {
   try {
-    const transaction = await Transaction.find({
+    const transaction = await Transaction.findOne({
       _id: req.params.id,
       userId: req.user.userId,
     });
