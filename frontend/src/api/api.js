@@ -1,7 +1,14 @@
 import axios from 'axios';
 
-const API = axios.create({
-  baseURL: 'http://192.168.2.57:5000/api/user',
+const BASE_URL = process.env.PUBLIC_API_URL;
+
+export const API = axios.create({
+  baseURL: `${BASE_URL}/api`,
+  timeout: 15000,
 });
 
-export default API;
+export const authHeader = (token) => ({
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
