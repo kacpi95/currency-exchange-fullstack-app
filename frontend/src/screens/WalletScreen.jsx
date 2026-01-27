@@ -39,9 +39,6 @@ export default function WalletScreen({ navigation }) {
     }, []),
   );
 
-  useEffect(() => {
-    fetchWallet();
-  }, []);
 
   if (loading || !wallet) {
     return (

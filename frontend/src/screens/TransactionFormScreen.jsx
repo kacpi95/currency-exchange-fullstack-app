@@ -27,8 +27,14 @@ export default function TransactionFormScreen({ route }) {
   const [type, setType] = useState('buy');
   const [loading, setLoading] = useState(false);
 
+  const isValid = (value) =>
+    /^\d+(\.\d{1,2})?$/.test(value) && Number(value) > 0;
+
   const handleTransaction = async () => {
-    if (!amountFrom) return Alert.alert('Error', 'Enter amount');
+    if (fromCurrency === toCurrency) {
+      return Alert.alert('Error', 'Currencies must be different');
+    }
+    if (!isValid(amountFrom)) return Alert.alert('Error', 'Enter amount');
 
     setLoading(true);
 
