@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import API from '../api/api';
+import { api } from '../api/api';
 import { Alert, Text, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CommonStyles from '../styles/common';
@@ -22,7 +22,7 @@ export default function RegisterScreen({ navigation }) {
 
     try {
       setLoading(true);
-      await API.post('/register', { name, email, password });
+      await api.post('/user/register', { name, email, password });
       Alert.alert('Registration completed, you can log in');
       navigation.navigate('Login');
     } catch (err) {

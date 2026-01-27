@@ -1,5 +1,4 @@
 import { useCallback, useContext, useState } from 'react';
-import TransactionApi from '../api/transaction';
 import { AuthContext } from '../context/AuthContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
@@ -14,6 +13,7 @@ import {
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import Spacing from '../styles/spacing';
+import { api } from '../api/api';
 
 export default function TransactionScreen() {
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export default function TransactionScreen() {
   const fetchTransaction = async () => {
     setLoading(true);
     try {
-      const res = await TransactionApi.get('/history', {
+      const res = await api.get('/transaction/history', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

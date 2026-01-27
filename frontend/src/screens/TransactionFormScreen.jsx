@@ -9,12 +9,13 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import TransactionApi from '../api/transaction';
+// import TransactionApi from '../api/transaction';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CurrencySelector from '../components/CurrencySelector';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import Spacing from '../styles/spacing';
+import { api } from '../api/api';
 
 export default function TransactionFormScreen({ route }) {
   const { token } = useContext(AuthContext);
@@ -32,8 +33,8 @@ export default function TransactionFormScreen({ route }) {
     setLoading(true);
 
     try {
-      const res = await TransactionApi.post(
-        '/',
+      const res = await api.post(
+        '/transaction',
         { type, fromCurrency, toCurrency, amountFrom: Number(amountFrom) },
         { headers: { Authorization: `Bearer ${token}` } },
       );

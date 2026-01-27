@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.PUBLIC_API_URL;
+const BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL;
 
-export const API = axios.create({
+export const api = axios.create({
   baseURL: `${BASE_URL}/api`,
   timeout: 15000,
 });

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import API from '../api/api';
+import { api } from '../api/api';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   Text,
@@ -27,7 +27,7 @@ export default function LoginScreen({ navigation }) {
 
     try {
       setLoading(true);
-      const res = await API.post('/login', { email, password });
+      const res = await api.post('/user/login', { email, password });
       login(res.data.user, res.data.token);
     } catch (err) {
       console.log(err.response?.data || err.message);

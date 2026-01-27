@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import WalletApi from '../api/wallet';
 import { StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CommonStyles from '../styles/common';
+import { api } from '../api/api';
 
 export default function DepositScreen({ navigation }) {
   const { token } = useContext(AuthContext);
@@ -15,8 +15,8 @@ export default function DepositScreen({ navigation }) {
 
     try {
       setLoading(true);
-      const res = await WalletApi.post(
-        '/deposit',
+      const res = await api.post(
+        '/wallet/deposit',
         { amount, currency: 'PLN' },
         { headers: { Authorization: `Bearer ${token}` } },
       );

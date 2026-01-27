@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import CurrentRatesApi from '../api/currentRates';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   StyleSheet,
@@ -13,6 +12,7 @@ import CurrencySelector from '../components/CurrencySelector';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import Spacing from '../styles/spacing';
+import { api } from '../api/api';
 
 export default function HistoricalRateScreen() {
   const [rates, setRates] = useState([]);
@@ -23,8 +23,8 @@ export default function HistoricalRateScreen() {
 
   const fetchRates = async () => {
     try {
-      const res = await CurrentRatesApi.get(
-        `/history/${currency}/${start}/${end}`,
+      const res = await api.get(
+        `/currency/history/${currency}/${start}/${end}`,
       );
       setRates(res.data);
     } catch (err) {

@@ -1,6 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import WalletApi from '../api/wallet';
 import {
   ActivityIndicator,
   View,
@@ -11,6 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import CommonStyles from '../styles/common';
+import { api } from '../api/api';
 
 export default function WalletScreen({ navigation }) {
   const { token } = useContext(AuthContext);
@@ -19,7 +19,7 @@ export default function WalletScreen({ navigation }) {
 
   const fetchWallet = async () => {
     try {
-      const res = await WalletApi.get('/', {
+      const res = await api.get('/wallet', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

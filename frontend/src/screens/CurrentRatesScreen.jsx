@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import CurrentRatesApi from '../api/currentRates';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, StyleSheet, Text } from 'react-native';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import Spacing from '../styles/spacing';
+import { api } from '../api/api';
 
 export default function CurrentRatesScreen() {
   const [rates, setRates] = useState([]);
@@ -12,7 +12,7 @@ export default function CurrentRatesScreen() {
 
   const fetchRates = async () => {
     try {
-      const res = await CurrentRatesApi.get('/current');
+      const res = await api.get('/currency/current');
       setRates(res.data);
     } catch (err) {
       console.log('Currency error:', err.message);
