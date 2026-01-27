@@ -23,7 +23,7 @@ export default function AppNavigator() {
             iconName = focused ? 'wallet' : 'wallet-outline';
           } else if (route.name === 'History') {
             iconName = focused ? 'list' : 'list-outline';
-          } else if (route.name === 'ExchangeRate') {
+          } else if (route.name === 'Rates') {
             iconName = focused ? 'trending-up' : 'trending-up-outline';
           }
 
@@ -45,7 +45,7 @@ export default function AppNavigator() {
       />
       <Tab.Screen name='History' component={TransactionScreen} />
       <Tab.Screen
-        name='ExchangeRate'
+        name='Rates'
         component={ExchangeRateStackNavigator}
         options={{ headerShown: false }}
       />

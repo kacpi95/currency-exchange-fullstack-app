@@ -5,6 +5,7 @@ import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import Spacing from '../styles/spacing';
 import { api } from '../api/api';
+import { ActivityIndicator } from 'react-native';
 
 export default function CurrentRatesScreen() {
   const [rates, setRates] = useState([]);
@@ -24,6 +25,22 @@ export default function CurrentRatesScreen() {
   useEffect(() => {
     fetchRates();
   }, []);
+
+  if (loading) {
+    return (
+      <SafeAreaView style={CommonStyles.container}>
+        <ActivityIndicator size='large' />
+      </SafeAreaView>
+    );
+  }
+
+  if (!rates.length) {
+    return (
+      <SafeAreaView style={CommonStyles.container}>
+        <Text style={CommonStyles.subtitle}>No exchange rates available</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={CommonStyles.container}>
