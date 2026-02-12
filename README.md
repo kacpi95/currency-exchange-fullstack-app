@@ -111,8 +111,8 @@ Built with **React Native (Expo)** on the frontend and a **Node.js / Express** b
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/kacpi95/Currency-_exchange_Native-.git
-cd currency-exchange-app
+git clone https://github.com/kacpi95/currency-exchange-fullstack-app.git
+cd currency-exchange-fullstack-app
 ```
 
 ### 2. Backend setup
