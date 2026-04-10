@@ -152,7 +152,7 @@ export default function RegisterScreen({ navigation }) {
           </TouchableOpacity>
 
           <View style={CommonStyles.loginRow}>
-            <Text style={CommonStyles.loginText}>Already have an account?</Text>
+            <Text style={CommonStyles.loginText}>Already have an account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={CommonStyles.loginLink}>Log in</Text>
             </TouchableOpacity>
