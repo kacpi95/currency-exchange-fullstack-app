@@ -119,7 +119,9 @@ export default StyleSheet.create({
 
   fieldLabel: {
     marginBottom: 10,
-    fontSize: 15,
+    fontSize: 13,
+    fontWeight: '700',
+    letterSpacing: 1.5,
     color: '#7C8591',
   },
 
@@ -251,5 +253,136 @@ export default StyleSheet.create({
   registerScrollContent: {
     flexGrow: 1,
     paddingBottom: 30,
+  },
+
+  loginHeaderIconWrap: {
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 24,
+  },
+
+  loginHeaderIconBox: {
+    width: 96,
+    height: 96,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 24,
+    backgroundColor: '#171D22',
+  },
+
+  loginContent: {
+    flexGrow: 1,
+  },
+
+  authTitleCenter: {
+    textAlign: 'center',
+    marginBottom: 14,
+    color: Colors.textPrimary,
+    lineHeight: 52,
+    fontSize: 46,
+    fontWeight: '800',
+  },
+
+  authSubtitleCenter: {
+    paddingHorizontal: 8,
+    marginBottom: 38,
+    textAlign: 'center',
+    fontSize: 18,
+    lineHeight: 28,
+    color: '#B0B7C3',
+  },
+
+  iconInputRow: {
+    paddingBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderDefault,
+  },
+
+  iconInput: {
+    flex: 1,
+    paddingVertical: 6,
+    fontSize: 17,
+    color: Colors.textPrimary,
+  },
+
+  loginOptionsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 8,
+    marginBottom: 26,
+  },
+
+  rememberRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  rememberText: {
+    marginLeft: 10,
+    fontSize: 15,
+    color: Colors.textPrimary,
+  },
+
+  forgotText: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: Colors.accent,
+  },
+
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 26,
+    marginTop: 22,
+  },
+
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#1F2933',
+  },
+
+  dividerText: {
+    marginHorizontal: 12,
+    fontSize: 13,
+    fontWeight: '700',
+    letterSpacing: 2,
+    color: '#7C8591',
+  },
+
+  socialRow: {
+    flexDirection: 'row',
+    gap: 14,
+    marginBottom: 40,
+  },
+
+  socialButton: {
+    flex: 1,
+    height: 56,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    borderRadius: 16,
+    backgroundColor: '#171D22',
+  },
+
+  socialButtonText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+
+  bottomSecurityText: {
+    marginTop: 24,
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 4,
+    color: '#4B5563',
   },
 });
