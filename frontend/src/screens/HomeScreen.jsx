@@ -14,7 +14,6 @@ import { AuthContext } from '../context/AuthContext';
 import { api } from '../api/api';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
-import Spacing from '../styles/spacing';
 
 export default function HomeScreen() {
   const [wallet, setWallet] = useState(null);
@@ -170,22 +169,130 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  actions: {
-    width: '100%',
-    gap: Spacing.lg,
-    alignItems: 'center',
+  scrollContent: {
+    ...CommonStyles.pagePadding,
   },
 
-  customCardTitle: {
-    fontSize: Spacing.lg,
+  dashboardLabel: {
+    ...CommonStyles.smallLabel,
+    marginBottom: 8,
   },
 
-  logoutCard: {
-    backgroundColor: Colors.logoutCardBackground,
-    borderColor: Colors.logoutCardBorder,
+  welcomeText: {
+    ...CommonStyles.titleHuge,
+    marginBottom: 26,
   },
 
-  customLogoutText: {
-    color: Colors.textError,
+  welcomeAccent: {
+    color: Colors.accent,
+  },
+
+  balanceCard: {
+    ...CommonStyles.cardDefault,
+    marginBottom: 26,
+    backgroundColor: '#11171D',
+    borderColor: '#1B2630',
+  },
+
+  balanceTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 22,
+    gap: 12,
+  },
+
+  balanceLabel: {
+    marginBottom: 8,
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+    color: '#7C8591',
+  },
+
+  balanceAmount: {
+    fontSize: 34,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  growthBadge: {
+    ...CommonStyles.badgePill,
+  },
+
+  growthText: {
+    ...CommonStyles.badgeText,
+  },
+
+  balanceButtons: {
+    gap: 12,
+  },
+
+  primaryAction: {
+    ...CommonStyles.buttonPrimary,
+  },
+
+  primaryActionText: {
+    ...CommonStyles.buttonPrimaryText,
+  },
+
+  secondaryAction: {
+    ...CommonStyles.buttonSecondary,
+  },
+
+  secondaryActionText: {
+    ...CommonStyles.buttonSecondaryText,
+  },
+
+  sectionTitle: {
+    ...CommonStyles.sectionTitle,
+  },
+
+  actionGrid: {
+    gap: 14,
+    marginBottom: 26,
+  },
+
+  actionCard: {
+    ...CommonStyles.cardSecondary,
+  },
+
+  actionIcon: {
+    ...CommonStyles.actionIcon,
+  },
+
+  actionTitle: {
+    ...CommonStyles.actionTitle,
+  },
+
+  actionSubtitle: {
+    ...CommonStyles.actionSubtitle,
+  },
+
+  sessionCard: {
+    ...CommonStyles.cardTertiary,
+    marginBottom: 10,
+  },
+
+  sessionTitle: {
+    marginBottom: 6,
+    fontSize: 22,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+
+  sessionSubtitle: {
+    marginBottom: 18,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#8B95A1',
+  },
+
+  logoutButton: {
+    ...CommonStyles.logoutButton,
+  },
+
+  logoutButtonText: {
+    ...CommonStyles.logoutButtonText,
   },
 });

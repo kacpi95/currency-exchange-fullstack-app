@@ -219,6 +219,141 @@ export default StyleSheet.create({
     color: Colors.accent,
   },
 
+  pagePadding: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 30,
+  },
+
+  cardDefault: {
+    padding: Spacing.xl,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: Colors.borderDefault,
+    backgroundColor: Colors.backgroundWhite,
+  },
+
+  cardSecondary: {
+    padding: 18,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#1A232C',
+    backgroundColor: '#0E1419',
+  },
+
+  cardTertiary: {
+    padding: 18,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#222C35',
+    backgroundColor: '#171D22',
+  },
+
+  buttonPrimary: {
+    height: 54,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    borderRadius: 16,
+    backgroundColor: Colors.accent,
+  },
+
+  buttonPrimaryText: {
+    fontSize: Spacing.lg,
+    fontWeight: '700',
+    color: Colors.darkText,
+  },
+
+  buttonSecondary: {
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 16,
+    backgroundColor: '#1A2128',
+  },
+
+  buttonSecondaryText: {
+    fontSize: Spacing.lg,
+    fontWeight: '700',
+    color: Colors.accent,
+  },
+
+  sectionTitle: {
+    marginBottom: 16,
+    fontSize: 24,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  smallLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 2,
+    color: '#5E6772',
+  },
+
+  titleHuge: {
+    fontSize: 38,
+    lineHeight: 44,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  badgePill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+    borderWidth: 1,
+    borderRadius: 50,
+    borderColor: 'rgba(43,255,158,0.22)',
+    backgroundColor: 'rgba(43,255,158,0.12)',
+  },
+
+  badgeText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: Colors.accentSoft,
+  },
+
+  actionIcon: {
+    width: 42,
+    height: 42,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+    borderRadius: 12,
+    backgroundColor: 'rgba(43,255,158,0.08)',
+  },
+
+  actionTitle: {
+    marginBottom: 6,
+    fontSize: 20,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+
+  actionSubtitle: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#A5AFBA',
+  },
+
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 4,
+  },
+
+  logoutButtonText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.textError,
+  },
+
   featureRow: {
     flexDirection: 'row',
     gap: 14,
