@@ -132,8 +132,9 @@ export default function RegisterScreen({ navigation }) {
 
             <Text style={CommonStyles.checkboxText}>
               I agree to the
-              <Text style={CommonStyles.checkboxLink}>Terms of Service</Text>
-              and <Text style={CommonStyles.checkboxLink}>Privacy Policy</Text>.
+              <Text style={CommonStyles.checkboxLink}> Terms of Service </Text>
+              and
+              <Text style={CommonStyles.checkboxLink}> Privacy Policy </Text>.
             </Text>
           </Pressable>
 

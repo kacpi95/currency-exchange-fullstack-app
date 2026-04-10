@@ -27,7 +27,8 @@ export default StyleSheet.create({
     borderRadius: Spacing.sm,
     fontSize: Spacing.lg,
     borderColor: Colors.borderDefault,
-    backgroundColor: Colors.textPrimary,
+    backgroundColor: Colors.backgroundWhite,
+    color: Colors.textPrimary,
   },
 
   button: {
@@ -37,7 +38,7 @@ export default StyleSheet.create({
     marginTop: Spacing.md,
     padding: Spacing.lg,
     borderRadius: Spacing.sm,
-    backgroundColor: Colors.textSecondary,
+    backgroundColor: Colors.textPrimary,
   },
 
   buttonText: {
@@ -84,5 +85,171 @@ export default StyleSheet.create({
     fontSize: Spacing.xl,
     fontWeight: '600',
     color: Colors.textPrimary,
+  },
+
+  registerScreen: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 8,
+    backgroundColor: Colors.backgroundDefault,
+  },
+
+  registerContent: {
+    flex: 1,
+  },
+
+  registerTitle: {
+    marginBottom: 10,
+    fontSize: 46,
+    lineHeight: 52,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  registerSubtitle: {
+    marginBottom: 42,
+    fontSize: 20,
+    lineHeight: 28,
+    color: '#B0B7C3',
+  },
+
+  fieldBlock: {
+    marginBottom: 28,
+  },
+
+  fieldLabel: {
+    marginBottom: 10,
+    fontSize: 15,
+    color: '#7C8591',
+  },
+
+  lineInput: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderDefault,
+    fontSize: 17,
+    color: Colors.textPrimary,
+  },
+
+  passwordRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderDefault,
+  },
+
+  passwordInput: {
+    flex: 1,
+    paddingVertical: 12,
+    fontSize: 17,
+    color: Colors.textPrimary,
+  },
+
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: 8,
+    marginBottom: 34,
+  },
+
+  checkbox: {
+    width: 22,
+    height: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+    marginTop: 2,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: Colors.borderDefault,
+    backgroundColor: '#11161B',
+  },
+
+  checkboxActive: {
+    backgroundColor: Colors.accent,
+    borderColor: Colors.accent,
+  },
+
+  checkboxText: {
+    flex: 1,
+    fontSize: 15,
+    lineHeight: 24,
+    color: Colors.textPrimary,
+  },
+
+  checkboxLink: {
+    color: Colors.accent,
+    fontWeight: '600',
+  },
+
+  registerButton: {
+    height: 58,
+    marginBottom: 34,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 10,
+    elevation: 8,
+    borderRadius: 16,
+    backgroundColor: Colors.accent,
+  },
+
+  registerButtonText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: Colors.darkText,
+  },
+
+  loginRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 42,
+  },
+
+  loginText: {
+    fontSize: 16,
+    color: '#B0B7C3',
+  },
+
+  loginLink: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: Colors.accent,
+  },
+
+  featureRow: {
+    flexDirection: 'row',
+    gap: 14,
+    marginTop: 'auto',
+    marginBottom: 20,
+  },
+
+  featureCard: {
+    flex: 1,
+    minHeight: 110,
+    padding: 16,
+    justifyContent: 'flex-end',
+    borderRadius: 18,
+    backgroundColor: '#0C1217',
+  },
+
+  featureLabel: {
+    marginTop: 16,
+    marginBottom: 6,
+    letterSpacing: 1,
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#7C8591',
+  },
+
+  featureTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+
+  registerScrollContent: {
+    flexGrow: 1,
+    paddingBottom: 30,
   },
 });
