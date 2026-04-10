@@ -9,6 +9,7 @@ const TOKEN_KEY = 'auth_token';
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadAuth = async () => {
@@ -24,6 +25,8 @@ export const AuthProvider = ({ children }) => {
         }
       } catch (error) {
         console.log('Failed to load auth state', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -55,7 +58,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
