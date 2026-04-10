@@ -1,14 +1,17 @@
 export default {
-  backgroundDefault: '#121212',
-  backgroundWhite: '#1E1E1E',
-  logoutCardBackground: '#2C2C2C',
+  backgroundDefault: '#05080A',
+  backgroundWhite: '#0B1115',
+  logoutCardBackground: '#10171D',
+  logoutCardBorder: '#1C2630',
 
-  textPrimary: '#FFFFFF',
-  textSecondary: '#B0B0B0',
-  textTertiary: '#777777',
+  textPrimary: '#F5F7FA',
+  textSecondary: '#A1A9B3',
+  textTertiary: '#6B7280',
   textError: '#FF5252',
   textDisabled: '#555555',
 
-  borderDefault: '#444444',
-  logoutCardBorder: '#666666',
+  borderDefault: '#28323D',
+  accent: '#2BFF9E',
+  accentSoft: '#71F5B4',
+  darkText: '#08110D',
 };

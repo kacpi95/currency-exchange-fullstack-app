@@ -107,7 +107,7 @@ export default function RegisterScreen({ navigation }) {
 
               <TouchableOpacity onPress={() => setSecure(!secure)}>
                 <Feather
-                  name={secure ? 'eye' : 'eye-off'}
+                  name={secure ? 'eye-off' : 'eye'}
                   size={20}
                   color='#6B7280'
                 />
