@@ -1,6 +1,4 @@
-import { useContext } from 'react';
-import { useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { useContext, useState } from 'react';
 import {
   Alert,
   Text,
@@ -8,16 +6,18 @@ import {
   TouchableOpacity,
   TextInput,
   View,
+  ScrollView,
 } from 'react-native';
-// import TransactionApi from '../api/transaction';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+
+import { AuthContext } from '../context/AuthContext';
 import CurrencySelector from '../components/CurrencySelector';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
-import Spacing from '../styles/spacing';
 import { api } from '../api/api';
 
-export default function TransactionFormScreen({ route }) {
+export default function TransactionFormScreen({ route, navigation }) {
   const { token } = useContext(AuthContext);
   const fetchWallet = route?.params?.fetchWallet ?? (() => {});
 
@@ -34,83 +34,145 @@ export default function TransactionFormScreen({ route }) {
     if (fromCurrency === toCurrency) {
       return Alert.alert('Error', 'Currencies must be different');
     }
-    if (!isValid(amountFrom)) return Alert.alert('Error', 'Enter amount');
 
-    setLoading(true);
+    if (!isValid(amountFrom)) {
+      return Alert.alert('Error', 'Enter a valid amount');
+    }
 
     try {
-      const res = await api.post(
+      setLoading(true);
+
+      await api.post(
         '/transaction',
         { type, fromCurrency, toCurrency, amountFrom: Number(amountFrom) },
         { headers: { Authorization: `Bearer ${token}` } },
       );
-      Alert.alert(`Success, Transaction completed`);
+
+      Alert.alert('Success', 'Transaction completed');
       fetchWallet();
       setAmountFrom('');
+      navigation.goBack();
     } catch (err) {
       Alert.alert('Error', err.response?.data?.message || err.message);
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <SafeAreaView style={CommonStyles.container}>
-      <Text style={CommonStyles.title}>Make Transaction</Text>
-
-      <Text style={CommonStyles.subtitle}>Type</Text>
-
-      <View style={styles.typeRow}>
-        <TouchableOpacity
-          style={[styles.typeButton, type === 'buy' && styles.buyActive]}
-          onPress={() => setType('buy')}
-        >
-          <Text
-            style={[styles.typeText, type === 'buy' && styles.typeTextActive]}
-          >
-            BUY
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.typeButton, type === 'sell' && styles.sellActive]}
-          onPress={() => setType('sell')}
-        >
-          <Text
-            style={[styles.typeText, type === 'sell' && styles.typeTextActive]}
-          >
-            SELL
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <CurrencySelector
-        label='From Currency'
-        value={fromCurrency}
-        onSelect={setFromCurrency}
-      />
-      <CurrencySelector
-        label='To Currency'
-        value={toCurrency}
-        onSelect={setToCurrency}
-      />
-
-      <Text style={CommonStyles.subtitle}>Amount</Text>
-      <TextInput
-        style={CommonStyles.input}
-        value={amountFrom}
-        onChangeText={setAmountFrom}
-        keyboardType='numeric'
-      />
-
-      <TouchableOpacity
-        style={[CommonStyles.button, loading && styles.disabled]}
-        onPress={handleTransaction}
-        disabled={loading}
+    <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={CommonStyles.pagePadding}
       >
-        <Text style={CommonStyles.buttonText}>
-          {loading ? 'Processing...' : 'Submit'}
+        <Text style={CommonStyles.smallLabel}>CURRENCY EXCHANGE</Text>
+
+        <Text style={styles.title}>Make Transaction</Text>
+
+        <Text style={styles.subtitle}>
+          Exchange funds between available currencies in your wallet.
         </Text>
-      </TouchableOpacity>
+
+        <View style={styles.section}>
+          <Text style={CommonStyles.fieldLabel}>TYPE</Text>
+
+          <View style={styles.typeRow}>
+            <TouchableOpacity
+              style={[
+                styles.typeButton,
+                type === 'buy' && styles.typeButtonBuyActive,
+              ]}
+              onPress={() => setType('buy')}
+            >
+              <Text
+                style={[
+                  styles.typeText,
+                  type === 'buy' && styles.typeTextActiveDark,
+                ]}
+              >
+                BUY
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[
+                styles.typeButton,
+                type === 'sell' && styles.typeButtonSellActive,
+              ]}
+              onPress={() => setType('sell')}
+            >
+              <Text
+                style={[
+                  styles.typeText,
+                  type === 'sell' && styles.typeTextActiveLight,
+                ]}
+              >
+                SELL
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.selectorBlock}>
+          <CurrencySelector
+            label='From Currency'
+            value={fromCurrency}
+            onSelect={setFromCurrency}
+          />
+        </View>
+
+        <View style={styles.selectorBlock}>
+          <CurrencySelector
+            label='To Currency'
+            value={toCurrency}
+            onSelect={setToCurrency}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={CommonStyles.fieldLabel}>AMOUNT</Text>
+
+          <View style={styles.amountRow}>
+            <Text style={styles.amountCurrency}>{fromCurrency}</Text>
+            <TextInput
+              style={styles.amountInput}
+              value={amountFrom}
+              onChangeText={setAmountFrom}
+              keyboardType='numeric'
+              placeholder='0.00'
+              placeholderTextColor='#3B3F46'
+            />
+          </View>
+        </View>
+
+        {!!amountFrom && (
+          <View style={styles.previewCard}>
+            <Text style={styles.previewLabel}>Transaction summary</Text>
+            <Text style={styles.previewText}>
+              {type.toUpperCase()} {amountFrom} {fromCurrency} → {toCurrency}
+            </Text>
+          </View>
+        )}
+
+        <TouchableOpacity
+          style={[
+            CommonStyles.buttonPrimary,
+            styles.submitButton,
+            loading && styles.disabled,
+          ]}
+          onPress={handleTransaction}
+          disabled={loading}
+        >
+          <Ionicons
+            name='swap-horizontal-outline'
+            size={20}
+            color={Colors.darkText}
+          />
+          <Text style={CommonStyles.buttonPrimaryText}>
+            {loading ? 'Processing...' : 'Submit Transaction'}
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 }
