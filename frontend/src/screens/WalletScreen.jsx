@@ -10,7 +10,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons, Feather } from '@expo/vector-icons';
-
 import { AuthContext } from '../context/AuthContext';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
@@ -164,7 +163,140 @@ export default function WalletScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  customButton: {
-    maxWidth: 360,
+  loaderContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  totalRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    gap: 8,
+    marginTop: 6,
+    marginBottom: 14,
+  },
+
+  totalAmount: {
+    fontSize: 52,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+    lineHeight: 58,
+  },
+
+  totalCurrency: {
+    marginBottom: 8,
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.accent,
+  },
+
+  currencyPrimaryCard: {
+    ...CommonStyles.cardDefault,
+    marginTop: 38,
+    marginBottom: 16,
+    borderColor: '#18232C',
+    backgroundColor: '#10171D',
+  },
+
+  currencyHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  currencyLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+
+  currencyIconPrimary: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 18,
+    backgroundColor: 'rgba(43,255,158,0.12)',
+  },
+
+  currencyIconSmall: {
+    width: 28,
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 14,
+    backgroundColor: '#1A2128',
+  },
+
+  currencySymbol: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#9AA4AF',
+  },
+
+  currencyTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+
+  currencyCode: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#7C8591',
+  },
+
+  primaryAmount: {
+    marginTop: 26,
+    fontSize: 46,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  smallCardsRow: {
+    flexDirection: 'row',
+    gap: 14,
+    marginBottom: 34,
+  },
+
+  currencySmallCard: {
+    ...CommonStyles.cardSecondary,
+    flex: 1,
+    minHeight: 150,
+  },
+
+  smallCardTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+
+  smallAmount: {
+    marginTop: 28,
+    marginBottom: 8,
+    fontSize: 22,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  smallHint: {
+    fontSize: 13,
+    color: '#7C8591',
+  },
+
+  fullWidthButton: {
+    width: '100%',
+    marginBottom: 14,
+  },
+
+  outlineButton: {
+    width: '100%',
+    marginBottom: 10,
+    flexDirection: 'row',
+    gap: 10,
+    borderWidth: 1,
+    borderColor: '#1E2B35',
+    backgroundColor: 'transparent',
   },
 });

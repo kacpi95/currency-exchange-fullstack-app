@@ -15,7 +15,7 @@ Built with **React Native (Expo)** on the frontend and a **Node.js / Express** b
 
 Download and install the Android app:
 
-https://expo.dev/accounts/kacpi/projects/currency-exchange/builds/eb5906c3-6773-48bc-a7dc-d437514163da
+https:
 
 > APK may show a security warning because it is not installed via Google Play. This is expected.
 
