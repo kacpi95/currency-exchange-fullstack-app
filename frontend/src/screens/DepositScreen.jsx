@@ -110,6 +110,70 @@ export default function DepositScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    marginBottom: 10,
+    fontSize: 42,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  subtitle: {
+    marginBottom: 36,
+    fontSize: 18,
+    color: '#A1A9B3',
+  },
+
+  inputBlock: {
+    marginBottom: 28,
+  },
+
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderDefault,
+  },
+
+  currency: {
+    marginRight: 10,
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.accent,
+  },
+
+  input: {
+    flex: 1,
+    paddingVertical: 6,
+    color: Colors.textPrimary,
+    fontSize: 20,
+  },
+
+  previewBox: {
+    marginBottom: 30,
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#1B2630',
+    backgroundColor: '#11171D',
+  },
+
+  previewLabel: {
+    marginBottom: 6,
+    fontSize: 13,
+    color: '#7C8591',
+  },
+
+  previewAmount: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  fullWidthButton: {
+    width: '100%',
+  },
+
   disabled: {
     opacity: 0.6,
   },
