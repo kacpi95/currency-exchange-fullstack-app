@@ -2,13 +2,18 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import {
   Alert,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  View,
+  StyleSheet,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+
 import CommonStyles from '../styles/common';
+import Colors from '../styles/colors';
 import { api } from '../api/api';
 
 export default function DepositScreen({ navigation }) {
@@ -26,42 +31,80 @@ export default function DepositScreen({ navigation }) {
 
     try {
       setLoading(true);
-      const res = await api.post(
+
+      await api.post(
         '/wallet/deposit',
         { amount, currency: 'PLN' },
         { headers: { Authorization: `Bearer ${token}` } },
       );
+
       setAmount('');
       navigation.goBack();
     } catch (err) {
       console.log('Error', err.response?.data?.message || err.message);
+      Alert.alert('Error', 'Deposit failed');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <SafeAreaView style={CommonStyles.container}>
-      <Text style={CommonStyles.title}>Deposit PLN</Text>
-
-      <Text style={CommonStyles.subtitle}>Amount</Text>
-      <TextInput
-        style={[CommonStyles.input, styles.customInput]}
-        keyboardType='numeric'
-        placeholder='Amount'
-        value={amount}
-        onChangeText={setAmount}
-      />
-
-      <TouchableOpacity
-        style={[CommonStyles.button, loading && styles.disabled]}
-        disabled={loading}
-        onPress={handleDeposit}
+    <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={CommonStyles.pagePadding}
       >
-        <Text style={CommonStyles.buttonText}>
-          {loading ? 'Processing...' : 'Submit'}
+        <Text style={CommonStyles.smallLabel}>ADD FUNDS</Text>
+
+        <Text style={styles.title}>Deposit PLN</Text>
+
+        <Text style={styles.subtitle}>
+          Enter the amount you want to add to your wallet.
         </Text>
-      </TouchableOpacity>
+
+        <View style={styles.inputBlock}>
+          <Text style={CommonStyles.fieldLabel}>AMOUNT</Text>
+
+          <View style={styles.inputRow}>
+            <Text style={styles.currency}>PLN</Text>
+
+            <TextInput
+              style={styles.input}
+              keyboardType='numeric'
+              placeholder='0.00'
+              placeholderTextColor='#3B3F46'
+              value={amount}
+              onChangeText={setAmount}
+            />
+          </View>
+        </View>
+
+        {!!amount && (
+          <View style={styles.previewBox}>
+            <Text style={styles.previewLabel}>You will deposit</Text>
+            <Text style={styles.previewAmount}>{amount} PLN</Text>
+          </View>
+        )}
+
+        <TouchableOpacity
+          style={[
+            CommonStyles.buttonPrimary,
+            styles.fullWidthButton,
+            loading && styles.disabled,
+          ]}
+          disabled={loading}
+          onPress={handleDeposit}
+        >
+          <Ionicons
+            name='add-circle-outline'
+            size={20}
+            color={Colors.darkText}
+          />
+          <Text style={CommonStyles.buttonPrimaryText}>
+            {loading ? 'Processing...' : 'Confirm Deposit'}
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 }
