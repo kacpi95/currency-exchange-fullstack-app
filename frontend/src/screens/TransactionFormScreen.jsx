@@ -178,36 +178,114 @@ export default function TransactionFormScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    marginBottom: 10,
+    fontSize: 42,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  subtitle: {
+    marginBottom: 34,
+    fontSize: 18,
+    lineHeight: 28,
+    color: '#A1A9B3',
+  },
+
+  section: {
+    marginBottom: 26,
+  },
+
   typeRow: {
-    marginBottom: Spacing.md,
     flexDirection: 'row',
-    gap: Spacing.md,
+    gap: 12,
   },
 
   typeButton: {
-    paddingVertical: Spacing.md,
-    paddingHorizontal: Spacing.xxxl,
-    borderRadius: Spacing.sm,
+    flex: 1,
+    height: 52,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: Colors.borderDefault,
-    backgroundColor: Colors.backgroundWhite,
+    borderColor: '#1E2B35',
+    backgroundColor: '#11171D',
   },
 
-  buyActive: {
-    backgroundColor: Colors.textSecondary,
+  typeButtonBuyActive: {
+    backgroundColor: Colors.accent,
+    borderColor: Colors.accent,
   },
 
-  sellActive: {
+  typeButtonSellActive: {
     backgroundColor: Colors.textError,
+    borderColor: Colors.textError,
   },
 
   typeText: {
+    fontSize: 16,
     fontWeight: '700',
     color: Colors.textPrimary,
   },
 
-  typeTextActive: {
-    color: Colors.backgroundWhite,
+  typeTextActiveDark: {
+    color: Colors.darkText,
+  },
+
+  typeTextActiveLight: {
+    color: '#FFFFFF',
+  },
+
+  selectorBlock: {
+    marginBottom: 18,
+    alignItems: 'center',
+  },
+
+  amountRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderDefault,
+  },
+
+  amountCurrency: {
+    marginRight: 10,
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.accent,
+  },
+
+  amountInput: {
+    flex: 1,
+    paddingVertical: 6,
+    fontSize: 20,
+    color: Colors.textPrimary,
+  },
+
+  previewCard: {
+    padding: 16,
+    marginBottom: 30,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#1B2630',
+    backgroundColor: '#11171D',
+  },
+
+  previewLabel: {
+    marginBottom: 6,
+    fontSize: 13,
+    color: '#7C8591',
+  },
+
+  previewText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+
+  submitButton: {
+    width: '100%',
   },
 
   disabled: {
