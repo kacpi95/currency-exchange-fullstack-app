@@ -147,59 +147,116 @@ export default function HistoricalRateScreen() {
 }
 
 const styles = StyleSheet.create({
-  listContainer: {
-    width: '100%',
+  listContent: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 30,
+  },
+
+  title: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 40,
+    fontWeight: '800',
+    color: Colors.textPrimary,
+  },
+
+  subtitle: {
+    marginBottom: 30,
+    fontSize: 18,
+    lineHeight: 28,
+    color: '#A1A9B3',
+  },
+
+  selectorBlock: {
+    marginBottom: 18,
     alignItems: 'center',
   },
 
-  customCard: {
-    marginBottom: Spacing.md,
-    paddingHorizontal: 100,
+  inputBlock: {
+    marginBottom: 22,
   },
 
-  customButton: {
-    marginBottom: Spacing.xl,
+  lineInput: {
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.borderDefault,
+    paddingVertical: 12,
+    fontSize: 17,
+    color: Colors.textPrimary,
   },
 
-  cardDate: {
-    marginBottom: Spacing.xs,
-    fontSize: Spacing.lg,
-    color: Colors.textSecondary,
+  fetchButton: {
+    width: '100%',
+    marginBottom: 24,
   },
 
-  cardRate: {
-    fontSize: Spacing.xl,
+  emptyBox: {
+    marginBottom: 10,
+    padding: 18,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#1B2630',
+    backgroundColor: '#11171D',
+  },
+
+  emptyTitle: {
+    marginBottom: 6,
+    fontSize: 18,
     fontWeight: '700',
     color: Colors.textPrimary,
   },
 
-  currencyRow: {
-    marginBottom: Spacing.md,
-    gap: Spacing.md,
-    flexDirection: 'row',
+  emptyText: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#A5AFBA',
   },
 
-  currencyButton: {
-    paddingVertical: Spacing.md,
-    paddingHorizontal: Spacing.xl,
-    borderRadius: Spacing.sm,
-    borderWidth: 1,
-    borderColor: Colors.borderDefault,
-    backgroundColor: Colors.backgroundWhite,
+  loaderBox: {
+    paddingVertical: 24,
+    alignItems: 'center',
   },
 
-  currencyActive: {
-    backgroundColor: Colors.textSecondary,
-    borderColor: Colors.textSecondary,
-  },
-
-  currencyText: {
-    fontWeight: '600',
+  resultsLabel: {
+    marginBottom: 16,
+    fontSize: 24,
+    fontWeight: '800',
     color: Colors.textPrimary,
-    textAlign: 'center',
   },
 
-  currencyTextActive: {
-    color: Colors.backgroundWhite,
+  rateCard: {
+    marginBottom: 12,
+    padding: 18,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#1A232C',
+    backgroundColor: '#0E1419',
+  },
+
+  rateTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+
+  rateIcon: {
+    width: 32,
+    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    backgroundColor: 'rgba(43,255,158,0.08)',
+  },
+
+  rateValue: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: Colors.accent,
+  },
+
+  rateDate: {
+    fontSize: 14,
+    color: '#A5AFBA',
   },
 });
