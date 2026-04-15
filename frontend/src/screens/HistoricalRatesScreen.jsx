@@ -7,7 +7,10 @@ import {
   FlatList,
   TouchableOpacity,
   View,
+  ActivityIndicator,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 import CurrencySelector from '../components/CurrencySelector';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
@@ -16,62 +19,128 @@ import { api } from '../api/api';
 
 export default function HistoricalRateScreen() {
   const [rates, setRates] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [currency, setCurrency] = useState('USD');
   const [start, setStart] = useState('2024-12-01');
   const [end, setEnd] = useState('2024-12-17');
 
   const fetchRates = async () => {
+    if (!start || !end) {
+      return;
+    }
+
     try {
+      setLoading(true);
       const res = await api.get(
         `/currency/history/${currency}/${start}/${end}`,
       );
       setRates(res.data);
     } catch (err) {
       console.log('Currency error:', err.message);
+      setRates([]);
     } finally {
       setLoading(false);
     }
   };
 
+  const renderRateItem = ({ item }) => (
+    <View style={styles.rateCard}>
+      <View style={styles.rateTopRow}>
+        <View style={styles.rateIcon}>
+          <Ionicons name='time-outline' size={16} color={Colors.accent} />
+        </View>
+
+        <Text style={styles.rateValue}>{item.mid.toFixed(2)}</Text>
+      </View>
+
+      <Text style={styles.rateDate}>{item.effectiveDate}</Text>
+    </View>
+  );
+
   return (
-    <SafeAreaView style={CommonStyles.container}>
-      <Text style={CommonStyles.title}>Exchange Rates</Text>
-
-      <CurrencySelector
-        label='Currency'
-        value={currency}
-        onSelect={setCurrency}
-      />
-      <TextInput
-        style={CommonStyles.input}
-        placeholder='Start YYYY-MM-DD'
-        value={start}
-        onChangeText={setStart}
-      />
-      <TextInput
-        style={CommonStyles.input}
-        placeholder='End YYYY-MM-DD'
-        value={end}
-        onChangeText={setEnd}
-      />
-      <TouchableOpacity
-        style={[CommonStyles.button, styles.customButton]}
-        onPress={fetchRates}
-      >
-        <Text style={CommonStyles.buttonText}>Fetch</Text>
-      </TouchableOpacity>
-
+    <SafeAreaView style={CommonStyles.registerScreen}>
       <FlatList
         data={rates}
         keyExtractor={(item) => item.effectiveDate}
-        contentContainerStyle={styles.listContainer}
-        renderItem={({ item }) => (
-          <View style={[CommonStyles.card, styles.customCard]}>
-            <Text style={styles.cardDate}>{item.effectiveDate}</Text>
-            <Text style={styles.cardRate}>{item.mid.toFixed(2)}</Text>
+        renderItem={renderRateItem}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.listContent}
+        ListHeaderComponent={
+          <View>
+            <Text style={CommonStyles.smallLabel}>HISTORICAL DATA</Text>
+
+            <Text style={styles.title}>Historical Rates</Text>
+
+            <Text style={styles.subtitle}>
+              Check past exchange rates for a selected currency and date range.
+            </Text>
+
+            <View style={styles.selectorBlock}>
+              <CurrencySelector
+                label='Currency'
+                value={currency}
+                onSelect={setCurrency}
+              />
+            </View>
+
+            <View style={styles.inputBlock}>
+              <Text style={CommonStyles.fieldLabel}>START DATE</Text>
+              <TextInput
+                style={styles.lineInput}
+                placeholder='YYYY-MM-DD'
+                placeholderTextColor='#3B3F46'
+                value={start}
+                onChangeText={setStart}
+              />
+            </View>
+
+            <View style={styles.inputBlock}>
+              <Text style={CommonStyles.fieldLabel}>END DATE</Text>
+              <TextInput
+                style={styles.lineInput}
+                placeholder='YYYY-MM-DD'
+                placeholderTextColor='#3B3F46'
+                value={end}
+                onChangeText={setEnd}
+              />
+            </View>
+
+            <TouchableOpacity
+              style={[CommonStyles.buttonPrimary, styles.fetchButton]}
+              onPress={fetchRates}
+              disabled={loading}
+            >
+              <Ionicons
+                name='search-outline'
+                size={20}
+                color={Colors.darkText}
+              />
+              <Text style={CommonStyles.buttonPrimaryText}>
+                {loading ? 'Loading...' : 'Fetch Rates'}
+              </Text>
+            </TouchableOpacity>
+
+            {!loading && rates.length === 0 && (
+              <View style={styles.emptyBox}>
+                <Text style={styles.emptyTitle}>No results yet</Text>
+                <Text style={styles.emptyText}>
+                  Select currency and date range, then fetch historical rates.
+                </Text>
+              </View>
+            )}
+
+            {loading && (
+              <View style={styles.loaderBox}>
+                <ActivityIndicator size='large' color={Colors.accent} />
+              </View>
+            )}
+
+            {!loading && rates.length > 0 && (
+              <Text style={styles.resultsLabel}>Results</Text>
+            )}
           </View>
-        )}
+        }
+        ListEmptyComponent={null}
       />
     </SafeAreaView>
   );
