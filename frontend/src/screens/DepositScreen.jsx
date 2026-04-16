@@ -15,6 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import { api } from '../api/api';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function DepositScreen({ navigation }) {
   const { token } = useContext(AuthContext);
@@ -50,6 +51,8 @@ export default function DepositScreen({ navigation }) {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Deposit' />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={CommonStyles.pagePadding}

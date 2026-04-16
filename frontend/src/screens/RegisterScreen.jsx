@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, Feather } from '@expo/vector-icons';
+
 import { api } from '../api/api';
 import CommonStyles from '../styles/common';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState('');
@@ -58,6 +60,8 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Register' showBack={false} />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={CommonStyles.registerScrollContent}
@@ -152,7 +156,9 @@ export default function RegisterScreen({ navigation }) {
           </TouchableOpacity>
 
           <View style={CommonStyles.loginRow}>
-            <Text style={CommonStyles.loginText}>Already have an account? </Text>
+            <Text style={CommonStyles.loginText}>
+              Already have an account?{' '}
+            </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={CommonStyles.loginLink}>Log in</Text>
             </TouchableOpacity>

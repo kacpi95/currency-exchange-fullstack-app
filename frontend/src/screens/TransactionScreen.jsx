@@ -14,6 +14,7 @@ import { AuthContext } from '../context/AuthContext';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import { api } from '../api/api';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function TransactionScreen() {
   const [loading, setLoading] = useState(true);
@@ -109,6 +110,8 @@ export default function TransactionScreen() {
   if (loading) {
     return (
       <SafeAreaView style={CommonStyles.registerScreen}>
+        <ScreenHeader title='Transaction History' />
+
         <View style={styles.loaderContainer}>
           <ActivityIndicator size='large' color={Colors.accent} />
         </View>
@@ -119,6 +122,8 @@ export default function TransactionScreen() {
   if (!transactions.length) {
     return (
       <SafeAreaView style={CommonStyles.registerScreen}>
+        <ScreenHeader title='Transaction History' />
+
         <View style={styles.emptyContainer}>
           <Text style={CommonStyles.smallLabel}>TRANSACTION HISTORY</Text>
           <Text style={styles.emptyTitle}>No transactions yet</Text>
@@ -132,6 +137,8 @@ export default function TransactionScreen() {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Transaction History' />
+
       <FlatList
         data={transactions}
         keyExtractor={(item) => item._id}

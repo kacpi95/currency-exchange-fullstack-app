@@ -13,6 +13,7 @@ import CommonStyles from '../styles/common';
 import Spacing from '../styles/spacing';
 import Colors from '../styles/colors';
 import { api } from '../api/api';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function CurrentRatesScreen() {
   const [rates, setRates] = useState([]);
@@ -63,6 +64,8 @@ export default function CurrentRatesScreen() {
   if (!rates.length) {
     return (
       <SafeAreaView style={CommonStyles.registerScreen}>
+        <ScreenHeader title='Current Rates' />
+
         <View style={styles.loader}>
           <Text style={styles.empty}>No exchange rates available</Text>
         </View>
@@ -72,6 +75,8 @@ export default function CurrentRatesScreen() {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Current Rates' />
+
       <FlatList
         data={rates}
         keyExtractor={(item) => item.code}

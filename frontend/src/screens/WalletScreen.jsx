@@ -10,10 +10,12 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons, Feather } from '@expo/vector-icons';
+
 import { AuthContext } from '../context/AuthContext';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import { api } from '../api/api';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function WalletScreen({ navigation }) {
   const { token } = useContext(AuthContext);
@@ -60,6 +62,8 @@ export default function WalletScreen({ navigation }) {
   if (loading) {
     return (
       <SafeAreaView style={CommonStyles.registerScreen}>
+        <ScreenHeader title='My Wallet' />
+
         <View style={styles.loaderContainer}>
           <ActivityIndicator size='large' color={Colors.accent} />
         </View>
@@ -69,6 +73,8 @@ export default function WalletScreen({ navigation }) {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='My Wallet' />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={CommonStyles.pagePadding}

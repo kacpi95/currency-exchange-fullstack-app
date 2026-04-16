@@ -16,6 +16,7 @@ import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import Spacing from '../styles/spacing';
 import { api } from '../api/api';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function HistoricalRateScreen() {
   const [rates, setRates] = useState([]);
@@ -59,6 +60,8 @@ export default function HistoricalRateScreen() {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Historical Rates' />
+
       <FlatList
         data={rates}
         keyExtractor={(item) => item.effectiveDate}

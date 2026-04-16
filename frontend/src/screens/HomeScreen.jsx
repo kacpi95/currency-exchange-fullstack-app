@@ -14,6 +14,7 @@ import { AuthContext } from '../context/AuthContext';
 import { api } from '../api/api';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function HomeScreen() {
   const [wallet, setWallet] = useState(null);
@@ -56,6 +57,8 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Dashboard' showBack={false} />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}

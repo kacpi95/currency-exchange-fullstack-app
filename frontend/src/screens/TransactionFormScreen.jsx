@@ -16,6 +16,7 @@ import CurrencySelector from '../components/CurrencySelector';
 import CommonStyles from '../styles/common';
 import Colors from '../styles/colors';
 import { api } from '../api/api';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function TransactionFormScreen({ route, navigation }) {
   const { token } = useContext(AuthContext);
@@ -61,6 +62,8 @@ export default function TransactionFormScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Make Transaction' />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={CommonStyles.pagePadding}

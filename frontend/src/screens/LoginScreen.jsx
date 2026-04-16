@@ -1,6 +1,4 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { api } from '../api/api';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   Text,
@@ -12,7 +10,11 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+
 import CommonStyles from '../styles/common';
+import { AuthContext } from '../context/AuthContext';
+import { api } from '../api/api';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function LoginScreen({ navigation }) {
   const { login } = useContext(AuthContext);
@@ -46,6 +48,8 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <SafeAreaView style={CommonStyles.registerScreen}>
+      <ScreenHeader title='Login' showBack={false} />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={CommonStyles.registerScrollContent}
