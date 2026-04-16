@@ -8,7 +8,11 @@ const WalletStack = createNativeStackNavigator();
 
 export default function WalletStackNavigator() {
   return (
-    <WalletStack.Navigator>
+    <WalletStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <WalletStack.Screen
         name='WalletMain'
         component={WalletScreen}

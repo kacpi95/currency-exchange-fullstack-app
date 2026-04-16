@@ -8,7 +8,11 @@ const ExchangeRateStack = createNativeStackNavigator();
 
 export default function ExchangeRateStackNavigator() {
   return (
-    <ExchangeRateStack.Navigator>
+    <ExchangeRateStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <ExchangeRateStack.Screen
         name='ExchangeRate'
         component={ExchangeRateScreen}
