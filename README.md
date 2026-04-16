@@ -15,7 +15,7 @@ Built with **React Native (Expo)** on the frontend and a **Node.js / Express** b
 
 Download and install the Android app:
 
-https:
+[Download Android APK (Expo Build)](https://expo.dev/accounts/kacpi/projects/currency-exchange/builds/7e4eac07-2dc4-4bd0-9fc3-279b0e6087cc)
 
 > APK may show a security warning because it is not installed via Google Play. This is expected.
 
@@ -25,27 +25,31 @@ https:
 
 ### Authentication
 
-| Login                           | Register                              |
-| ------------------------------- | ------------------------------------- |
-| ![Login](screenshots/login.png) | ![Register](screenshots/register.png) |
+<p align="center">
+  <img src="screenshots/login.png" width="250" />
+  <img src="screenshots/register.png" width="250" />
+</p>
 
----
+### Dashboard
+
+<p align="center">
+  <img src="screenshots/dashboard.jpeg" width="250" />
+</p>
 
 ### Wallet & Transactions
 
-| Wallet                            | Deposit PLN                         | Make Transaction                            |
-| --------------------------------- | ----------------------------------- | ------------------------------------------- |
-| ![Wallet](screenshots/wallet.png) | ![Deposit](screenshots/deposit.png) | ![Transaction](screenshots/transaction.png) |
-
----
+<p align="center">
+  <img src="screenshots/wallet.png" width="250" />
+  <img src="screenshots/deposit.png" width="250" />
+  <img src="screenshots/transaction.png" width="250" />
+</p>
 
 ### Exchange Rates
 
-| Current Rates                                  | Historical Rates                                     |
-| ---------------------------------------------- | ---------------------------------------------------- |
-| ![Current Rates](screenshots/currentRates.png) | ![Historical Rates](screenshots/historicalRates.png) |
-
----
+<p align="center">
+  <img src="screenshots/currentRates.png" width="250" />
+  <img src="screenshots/historicalRates.png" width="250" />
+</p>
 
 ## Features
 
